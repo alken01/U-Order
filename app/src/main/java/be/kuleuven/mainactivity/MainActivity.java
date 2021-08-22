@@ -21,6 +21,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,45 +44,40 @@ public class MainActivity extends AppCompatActivity {
     MenuAdapter menuAdapter;
     CategoryAdapter categoryAdapter;
     ImageView image_order;
+
     RequestQueue requestQueue;
+
+    Data data = new Data();
 
     List<Item> menuList = new ArrayList<>();
     List<Item> featuredList = new ArrayList<>();
     List<Category> categoryList = new ArrayList<>();
 
-//    Data data = new Data();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        txtTokensLeft = (TextView) findViewById(R.id.txtTokensLeft);
-//        txtTokensLeft.setText(String.valueOf(main.getTokens())+ "\uD83E\uDE99");
 
         image_order = (ImageView) findViewById(R.id.image_home);
         image_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBasket();
-            }
-        });
+                openBasket(); }});
 
-        requestQueue = VolleySingleton.getmInstance(this).getRequestQueue();
-//
+
+//        This is sort of the way that i would like to have it. To call the data
+//        from an external class and just put it in the recyclers.
 //        data.setMenu();
 //        data.setCategory();
 //        menuList = data.getMenuList();
 //        featuredList = data.getFeaturedList();
 //        categoryList = data.getCategoryList();
-
 //        basketList = data.getBasketList();
-        getMenu();
-        getCategory();
-        callIt();
 
-        setCategoryRecycler(categoryList);
-        setPopularRecycler(featuredList);
-        setMenuRecycler(menuList);
+        //current way
+        getMenu(); //gets all menu
+        getCategory(); //gets the categories
+        callIt(); //places them on the recycles
     }
 
     private void setPopularRecycler(List<Item> popularFoodList) {
@@ -116,28 +113,11 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
-//    public void openCategory() {
-//        Intent intent = new Intent(this, CategoryActivity.class);
-//        startActivity(intent);
-//        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-//    }
-
-//    public void openActivityScan() {
-//        Intent intent = new Intent(this, QRcode.class);
-//        startActivity(intent);
-//    }
-
-    private static Bitmap base64ToBitmap(String dataToDecode)
-    {
-        byte[] dataDecoded = Base64.decode(dataToDecode, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray( dataDecoded, 0, dataDecoded.length );
-        return bitmap;
-    }
-
-
 
     public void getMenu() {
+        requestQueue = Volley.newRequestQueue(this);
         String url = "https://studev.groept.be/api/a20sd710/getMenu";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -152,9 +132,13 @@ public class MainActivity extends AppCompatActivity {
                                 String category = object.getString("Category");
                                 String description = object.getString("description");
                                 int featured = object.getInt("featured");
-//                                Bitmap bitmap = base64ToBitmap(object.getString("image"));
 
-                                Item food = new Item(R.drawable.sushi, name, token, quantity, category, description, featured, 0);
+//                                String img = object.getString("image");
+//                                byte[] image = Base64.decode(img, Base64.DEFAULT);
+//                                Bitmap bitmap = BitmapFactory.decodeByteArray( image, 0, image.length );
+
+                                Item food = new Item( R.drawable.sushi, name, token, quantity, category, description, featured, 0);
+
                                 if (food.getFeatured() == 1) { featuredList.add(food); }
                                 else { menuList.add(food); }
 
@@ -168,10 +152,12 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
+
         requestQueue.add(jsonArrayRequest);
     }
 
     public void getCategory() {
+        requestQueue = Volley.newRequestQueue(this);
         String url = "https://studev.groept.be/api/a20sd710/getCategory";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

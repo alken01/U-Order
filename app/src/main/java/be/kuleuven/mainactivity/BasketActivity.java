@@ -25,7 +25,13 @@ public class BasketActivity extends AppCompatActivity {
     TextView txtTokensLeft2, txtTokensLeft3;
     Button btnOrder;
 
-    MainActivity mainActivity;
+    public List<Item> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Item> order) {
+        this.order = order;
+    }
 
     List<Item> order = new ArrayList<>();
 
@@ -62,15 +68,6 @@ public class BasketActivity extends AppCompatActivity {
        txtTokensLeft2.setText(tokenCounter(order) + "\uD83E\uDE99");
     }
 
-//    public void basketListAdder()
-//    {
-//        List<Item> menuList = mainActivity.getMeni();
-//        int len = menuList.size();
-//
-//        for(int i=0;i<len;i++)
-//            if(menuList.get(i).getOrder()>0)
-//            { order.add(menuList.get(i)); }
-//    }
 
     private String tokenCounter(List<Item> order) {
         int counter = 0;
