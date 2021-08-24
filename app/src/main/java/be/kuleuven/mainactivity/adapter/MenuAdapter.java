@@ -52,7 +52,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         if(menuList.get(position).getOrder() == 0) { setOrder = ""; }
         else{ setOrder = String.valueOf(menuList.get(position).getOrder()); }
 
-        holder.foodImage.setImageResource(R.drawable.sushi);
+        holder.foodImage.setImageBitmap(menuList.get(position).getImage());
         holder.name.setText(menuList.get(position).getName());
         holder.quantity.setText(setQuantities);
         holder.tokens.setText(setToken);

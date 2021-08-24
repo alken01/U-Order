@@ -56,7 +56,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
         holder.tokens.setText(setToken);
         holder.description.setText(popularFoodList.get(position).getDescription());
         holder.order.setText(setOrder);
-        holder.foodImage.setImageResource(R.drawable.sushi);
+        holder.foodImage.setImageBitmap(popularFoodList.get(position).getImage());
         popularFoodList.get(position).setOrder(popularFoodList.get(position).getOrder());
     }
 

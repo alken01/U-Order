@@ -4,14 +4,14 @@ import android.graphics.Bitmap;
 
 public class Item {
 
-    Integer image2;
     Bitmap image;
     String name,token, quantity, category, description;
     int order, featured;
 
-    public Item(Integer image, String name, String token, String quantity, String category, String description, int featured, int order)
+    public Item(Bitmap image, String name, String token, String quantity,
+                String category, String description, int featured, int order)
     {
-        image = image;
+        this.image = image;
         this.name = name;
         this.token = token;
         this.quantity = quantity;
@@ -24,12 +24,12 @@ public class Item {
     public int getOrder() { return order; }
     public void setOrder(int order) { this.order = order; }
 //
-//    public Bitmap getImage() {
-//        return image;
-//    }
-//    public void setImage(Bitmap image) {
-//        this.image = image;
-//    }
+    public Bitmap getImage() {
+        return image;
+    }
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 
     public int getFeatured() {
         return featured;
@@ -37,11 +37,6 @@ public class Item {
     public void setFeatured(int featured) {
         this.featured = featured;
     }
-
-    public Integer getImage2() {
-        return image2;
-    }
-    public void setImage2(Integer image) { image2 = image; }
 
     public String getName() {
         return name;

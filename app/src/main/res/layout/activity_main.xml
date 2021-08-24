@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#F1F6F9">
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="1500dp"
         android:layout_marginBottom="25dp"
-        android:background="#F1F6F9"
         tools:context=".MainActivity">
 
 
         <ImageView
             android:id="@+id/image_home"
-            android:layout_width="45dp"
-            android:layout_height="49dp"
+            android:layout_width="59dp"
+            android:layout_height="61dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +31,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/open_sans_extrabold"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/black"
             android:text="Yamato🥢 \nSushi, Leuven "
             android:textColor="#29282d"
             android:textSize="32sp"
@@ -39,9 +42,10 @@
         <TextView
             android:id="@+id/txtTokensLeft"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/regular"
+            android:onClick="openTokens"
             android:text="10 🪙 "
             android:textColor="#2C2B30"
             android:textSize="24sp"
@@ -56,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/open_sans_bold"
+            android:fontFamily="@font/bold"
             android:onClick="theRightWay"
             android:text="All Categories 🍱"
             android:textColor="#29282d"
@@ -72,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/open_sans_bold"
+            android:fontFamily="@font/bold"
             android:text="Menu 🍚"
             android:textColor="#29282d"
             android:textSize="24sp"
@@ -86,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/open_sans_bold"
+            android:fontFamily="@font/bold"
             android:text="Most Popular 🍣"
             android:textColor="#29282d"
             android:textSize="24sp"
@@ -135,5 +139,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAllCategories" />
 
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

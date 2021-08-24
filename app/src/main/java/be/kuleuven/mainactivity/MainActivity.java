@@ -45,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     ImageView image_order;
 
+    Data data;
     RequestQueue requestQueue;
 
-    Data data = new Data();
-
-    List<Item> menuList = new ArrayList<>();
-    List<Item> featuredList = new ArrayList<>();
-    List<Category> categoryList = new ArrayList<>();
+    List < Item > menuList = new ArrayList < > ();
+    List < Item > featuredList = new ArrayList < > ();
+    List < Category > categoryList = new ArrayList < > ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,46 +61,40 @@ public class MainActivity extends AppCompatActivity {
         image_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBasket(); }});
+                openBasket();
+            }
+        });
 
+        //        data.getInstance();
+        //
+        //        featuredList = data.getFeaturedList();
+        //        menuList = data.getMenuList();
+        //        categoryList = data.getCategoryList();
 
-//        This is sort of the way that i would like to have it. To call the data
-//        from an external class and just put it in the recyclers.
-//        data.setMenu();
-//        data.setCategory();
-//        menuList = data.getMenuList();
-//        featuredList = data.getFeaturedList();
-//        categoryList = data.getCategoryList();
-//        basketList = data.getBasketList();
-
-        //current way
         getMenu(); //gets all menu
         getCategory(); //gets the categories
         callIt(); //places them on the recycles
     }
 
-    private void setPopularRecycler(List<Item> popularFoodList) {
+    private void setPopularRecycler(List < Item > popularFoodList) {
         popularRecycler = findViewById(R.id.popular_recycler);
-        RecyclerView.LayoutManager layoutManager
-                = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         popularRecycler.setLayoutManager(layoutManager);
         featuredAdapter = new FeaturedAdapter(this, popularFoodList);
         popularRecycler.setAdapter(featuredAdapter);
     }
 
-    private void setMenuRecycler(List<Item> menuList) {
+    private void setMenuRecycler(List < Item > menuList) {
         menuRecycler = findViewById(R.id.menu_recycler2);
-        RecyclerView.LayoutManager layoutManager2
-                = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         menuRecycler.setLayoutManager(layoutManager2);
         menuAdapter = new MenuAdapter(this, menuList);
         menuRecycler.setAdapter(menuAdapter);
     }
 
-    private void setCategoryRecycler(List<Category> categoryList) {
+    private void setCategoryRecycler(List < Category > categoryList) {
         categoryRecycler = findViewById(R.id.category_recycler);
-        RecyclerView.LayoutManager layoutManager2
-                = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         categoryRecycler.setLayoutManager(layoutManager2);
         categoryAdapter = new CategoryAdapter(this, categoryList);
         categoryRecycler.setAdapter(categoryAdapter);
@@ -110,16 +103,21 @@ public class MainActivity extends AppCompatActivity {
     public void openBasket() {
         Intent intent = new Intent(this, BasketActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    public void openTokens() {
+        Intent intent = new Intent(this, TokensQR.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
     public void getMenu() {
         requestQueue = Volley.newRequestQueue(this);
-        String url = "https://studev.groept.be/api/a20sd710/getMenu";
+        String url = "https://studev.groept.be/api/a20sd710/getMenu2";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener < JSONArray > () {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("volley", "response : " + response.toString());
@@ -133,11 +131,10 @@ public class MainActivity extends AppCompatActivity {
                                 String description = object.getString("description");
                                 int featured = object.getInt("featured");
 
-//                                String img = object.getString("image");
-//                                byte[] image = Base64.decode(img, Base64.DEFAULT);
-//                                Bitmap bitmap = BitmapFactory.decodeByteArray( image, 0, image.length );
+                                byte[] imageBytes = Base64.decode(object.getString("image"), Base64.DEFAULT);
+                                Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 
-                                Item food = new Item( R.drawable.sushi, name, token, quantity, category, description, featured, 0);
+                                Item food = new Item(decodedImage, name, token, quantity, category, description, featured, 0);
 
                                 if (food.getFeatured() == 1) { featuredList.add(food); }
                                 else { menuList.add(food); }
@@ -149,8 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-            }
+            public void onErrorResponse(VolleyError error) {}
         });
 
         requestQueue.add(jsonArrayRequest);
@@ -160,49 +156,49 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         String url = "https://studev.groept.be/api/a20sd710/getCategory";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener < JSONArray > () {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d("volley","response : " + response.toString());
-                        for (int i = 0 ; i < response.length() ; i ++){
+                        Log.d("volley", "response : " + response.toString());
+                        for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 String Emoji = jsonObject.getString("Emoji");
                                 String Category = jsonObject.getString("Category");
                                 Category category = new Category(Emoji, Category);
                                 categoryList.add(category);
-                            } catch (JSONException e) { e.printStackTrace(); }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-            }
+            public void onErrorResponse(VolleyError error) {}
         });
         requestQueue.add(jsonArrayRequest);
     }
 
-    public void callIt(){
+    public void callIt() {
         String url = "https://studev.groept.be/api/a20sd710/getMenu";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener < JSONArray > () {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d("volley","response : " + response.toString());
+                        Log.d("volley", "response : " + response.toString());
 
-                        MenuAdapter adapter = new MenuAdapter(MainActivity.this , menuList);
+                        MenuAdapter adapter = new MenuAdapter(MainActivity.this, menuList);
                         menuRecycler.setAdapter(adapter);
 
-                        FeaturedAdapter adapter1 = new FeaturedAdapter(MainActivity.this , featuredList);
+                        FeaturedAdapter adapter1 = new FeaturedAdapter(MainActivity.this, featuredList);
                         popularRecycler.setAdapter(adapter1);
 
-                        CategoryAdapter adapter2 = new CategoryAdapter(MainActivity.this , categoryList);
+                        CategoryAdapter adapter2 = new CategoryAdapter(MainActivity.this, categoryList);
                         categoryRecycler.setAdapter(adapter2);
                     }
                 }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-            }
+            public void onErrorResponse(VolleyError error) {}
         });
         requestQueue.add(jsonArrayRequest);
         setCategoryRecycler(categoryList);
