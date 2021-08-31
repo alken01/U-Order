@@ -29,21 +29,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2" />
 
-        <Button
-            android:id="@+id/btnMinus"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/btn"
-            android:elevation="20dp"
-            android:fontFamily="@font/medium"
-            android:text="-"
-            android:textColor="#29282D"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlus" />
-
         <ImageView
             android:id="@+id/imgRecycle1"
             android:layout_width="146dp"
@@ -90,18 +75,17 @@
 
         <Button
             android:id="@+id/btnPlus"
-            android:layout_width="40dp"
+            android:layout_width="83dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/btn"
             android:elevation="15dp"
-            android:fontFamily="@font/medium"
+            android:fontFamily="@font/bold"
             android:lineSpacingExtra="0sp"
-            android:text="+"
+            android:text="Add"
             android:textColor="#29282D"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTokens"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
@@ -109,12 +93,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/medium"
             android:text="OO"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnMinus"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuantity" />
 
         <TextView
             android:id="@+id/txtQuantity"

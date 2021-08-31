@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.adapter;
+package be.kuleuven.mainactivity.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.model.Category;
+import be.kuleuven.mainactivity.ModelClasses.Category;
 
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {

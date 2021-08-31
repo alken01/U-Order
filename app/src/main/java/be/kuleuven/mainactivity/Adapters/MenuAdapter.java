@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.adapter;
+package be.kuleuven.mainactivity.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.model.Item;
+import be.kuleuven.mainactivity.ModelClasses.Item;
 
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
@@ -57,7 +57,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.quantity.setText(setQuantities);
         holder.tokens.setText(setToken);
         holder.description.setText(menuList.get(position).getDescription());
-        holder.order.setText(setOrder);
+//        holder.order.setText(setOrder);
         menuList.get(position).setOrder(menuList.get(position).getOrder());
 
     }
@@ -79,7 +79,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             tokens = itemView.findViewById(R.id.txtTokens2);
             description = itemView.findViewById(R.id.txtDescription2);
             quantity = itemView.findViewById(R.id.txtQuantity2);
-            order = itemView.findViewById(R.id.txtOrder2);
+//            order = itemView.findViewById(R.id.txtOrder2);
 
             itemView.findViewById(R.id.btnPlus2).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,17 +94,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 }
             });
 
-            itemView.findViewById(R.id.btnMinus2).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int quantity = Integer.parseInt(order.getText().toString()) - 1;
-                    if (quantity > 0) {
-                        order.setText(Integer.toString(quantity));
-                    } else {
-//                        order.setText("");
-                    }
-                }
-            });
 
 
         }

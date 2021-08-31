@@ -1,11 +1,9 @@
 package be.kuleuven.mainactivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,8 +16,6 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import be.kuleuven.mainactivity.model.Item;
 
 public class LogInActivity extends AppCompatActivity {
     private EditText user;
@@ -41,7 +37,7 @@ public class LogInActivity extends AppCompatActivity {
     public void openSignUp(View view) {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
 
@@ -69,7 +65,7 @@ public class LogInActivity extends AppCompatActivity {
                                             JSONObject j = response.getJSONObject(0);
 
                                             if (j.getString("Password").equals(String.valueOf(password.getText()))) {
-                                                Toast.makeText(LogInActivity.this, "Logging In", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(LogInActivity.this, "Log In Successful", Toast.LENGTH_LONG).show();
                                                 startActivity(intent);
                                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                                 finish();
@@ -90,6 +86,12 @@ public class LogInActivity extends AppCompatActivity {
                     error -> Log.d("Error", "Something went wrong"));
             usernameChecker.add(usernamesRequest);
         }
+    }
+
+    public void openGuest(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
     @Override

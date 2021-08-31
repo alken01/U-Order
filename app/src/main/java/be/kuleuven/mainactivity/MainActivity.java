@@ -1,17 +1,14 @@
 package be.kuleuven.mainactivity;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +18,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -31,11 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.kuleuven.mainactivity.adapter.CategoryAdapter;
-import be.kuleuven.mainactivity.adapter.MenuAdapter;
-import be.kuleuven.mainactivity.adapter.FeaturedAdapter;
-import be.kuleuven.mainactivity.model.Category;
-import be.kuleuven.mainactivity.model.Item;
+import be.kuleuven.mainactivity.Adapters.CategoryAdapter;
+import be.kuleuven.mainactivity.Adapters.MenuAdapter;
+import be.kuleuven.mainactivity.Adapters.FeaturedAdapter;
+import be.kuleuven.mainactivity.ModelClasses.Category;
+import be.kuleuven.mainactivity.ModelClasses.Item;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     List < Item > menuList = new ArrayList < > ();
     List < Item > featuredList = new ArrayList < > ();
     List < Category > categoryList = new ArrayList < > ();
+    List < Category > cartList = new ArrayList < > ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +62,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //        data.getInstance();
-        //
-        //        featuredList = data.getFeaturedList();
-        //        menuList = data.getMenuList();
-        //        categoryList = data.getCategoryList();
+//        addItemsLol();
 
         getMenu(); //gets all menu
         getCategory(); //gets the categories
         callIt(); //places them on the recycles
+
+
     }
 
     private void setPopularRecycler(List < Item > popularFoodList) {
@@ -106,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void openTokens() {
-        Intent intent = new Intent(this, TokensQR.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-
     public void getMenu() {
         requestQueue = Volley.newRequestQueue(this);
         String url = "https://studev.groept.be/api/a20sd710/getMenu2";
@@ -139,9 +128,14 @@ public class MainActivity extends AppCompatActivity {
                                 if (food.getFeatured() == 1) { featuredList.add(food); }
                                 else { menuList.add(food); }
 
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            MenuAdapter adapter = new MenuAdapter(MainActivity.this, menuList);
+                            menuRecycler.setAdapter(adapter);
+                            FeaturedAdapter adapter1 = new FeaturedAdapter(MainActivity.this, featuredList);
+                            popularRecycler.setAdapter(adapter1);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -170,6 +164,10 @@ public class MainActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+
+                            CategoryAdapter adapter2 = new CategoryAdapter(MainActivity.this, categoryList);
+                            categoryRecycler.setAdapter(adapter2);
+
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -180,27 +178,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callIt() {
-        String url = "https://studev.groept.be/api/a20sd710/getMenu";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener < JSONArray > () {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d("volley", "response : " + response.toString());
-
-                        MenuAdapter adapter = new MenuAdapter(MainActivity.this, menuList);
-                        menuRecycler.setAdapter(adapter);
-
-                        FeaturedAdapter adapter1 = new FeaturedAdapter(MainActivity.this, featuredList);
-                        popularRecycler.setAdapter(adapter1);
-
-                        CategoryAdapter adapter2 = new CategoryAdapter(MainActivity.this, categoryList);
-                        categoryRecycler.setAdapter(adapter2);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        });
-        requestQueue.add(jsonArrayRequest);
         setCategoryRecycler(categoryList);
         setPopularRecycler(featuredList);
         setMenuRecycler(menuList);

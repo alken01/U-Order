@@ -8,18 +8,39 @@
     tools:context=".SignUpActivity">
 
     <TextView
-        android:id="@+id/txtGuest"
+        android:id="@+id/txtName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/medium"
-        android:onClick="openGuest"
-        android:text="Enter as a Guest"
-        android:textColor="#2C2727"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtLogInHere"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/black"
+        android:text="Yamato🥢 "
+        android:textColor="#29282d"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtName4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="Sushi,"
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/txtName3"
+        app:layout_constraintTop_toBottomOf="@+id/txtName3" />
+
+    <TextView
+        android:id="@+id/txtName10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:text=" Leuven "
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/txtName4"
+        app:layout_constraintTop_toBottomOf="@+id/txtName3" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -36,25 +57,10 @@
         android:textAllCaps="false"
         android:textColor="#FF2B2B2B"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtGuest"
+        app:layout_constraintBottom_toTopOf="@+id/txtLogInHere"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txtName3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="88dp"
-        android:fontFamily="@font/black"
-        android:text="Yamato🥢 \nSushi, Leuven "
-        android:textColor="#29282d"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtName"
@@ -65,7 +71,6 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:fontFamily="@font/light"
-        android:hint="Name"
         android:inputType="textPersonName"
         android:textColor="#2B2B2B"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
@@ -77,10 +82,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/medium"
         android:text="Username"
         android:textColor="#FF2B2B2B"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/txtUsername"
         app:layout_constraintStart_toStartOf="@+id/txtUsername" />
 
@@ -93,7 +98,6 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:fontFamily="@font/light"
-        android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="#2B2B2B"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -105,10 +109,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/medium"
         android:text="Password"
         android:textColor="#FF2B2B2B"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintStart_toStartOf="@+id/txtPassword" />
 
@@ -121,7 +125,6 @@
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:fontFamily="@font/light"
-        android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#2B2B2B"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
@@ -133,10 +136,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:fontFamily="@font/medium"
         android:text="Name"
         android:textColor="#FF2B2B2B"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/txtName"
         app:layout_constraintStart_toStartOf="@+id/txtName" />
 
@@ -144,21 +147,22 @@
         android:id="@+id/txtLogInHere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:fontFamily="@font/regular"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/medium"
         android:onClick="openLogIn"
-        android:text="Log In Here"
+        android:text="or Log In Here"
+        android:textColor="#29282D"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName4" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnSignUp,txtName3,txtName,textView4,txtUsername,textView3,txtPassword,textView2,txtLogInHere" />
+        app:constraint_referenced_ids="btnSignUp,txtName,textView4,txtUsername,textView3,txtPassword,textView2,txtLogInHere" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

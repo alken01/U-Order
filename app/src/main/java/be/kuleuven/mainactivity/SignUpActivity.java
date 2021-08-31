@@ -52,23 +52,23 @@ public class SignUpActivity extends AppCompatActivity {
                     response -> {
                         if(response.length()==0)
                         {
-                            String newUser = UserCreator + username.getText()+"/"+password.getText()+"/"+name.getText()+"/"+name.getText();
+                            String newUser = UserCreator + username.getText()+"/"+password.getText()+"/"+name.getText();
                             RequestQueue userCreator = Volley.newRequestQueue( this );
                             JsonArrayRequest newUserRequest = new JsonArrayRequest(Request.Method.GET, newUser, null,
                                     response1 -> {
-                                        Toast.makeText(SignUpActivity.this,"Account Created",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignUpActivity.this,"Account Created Successfully",Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                         finish();
                                     },
-                                    error -> Toast.makeText(SignUpActivity.this,"Something went wrong",Toast.LENGTH_LONG).show());
+                                    error -> Toast.makeText(SignUpActivity.this,"Connection Failed",Toast.LENGTH_LONG).show());
                             userCreator.add(newUserRequest);
                         }
                         else{
-                            Toast.makeText(SignUpActivity.this,"Username taken",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this,"Username already exists",Toast.LENGTH_LONG).show();
                         }
                     },
-                    error -> Log.d("Error","Something went wrong"));
+                    error -> Log.d("Error","Error"));
             usernameChecker.add(usernamesRequest);
         }
     }
@@ -76,16 +76,16 @@ public class SignUpActivity extends AppCompatActivity {
     public void openLogIn(View view) {
         Intent intent = new Intent(this, LogInActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-    }
-
-    public void openGuest(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 
 
 }

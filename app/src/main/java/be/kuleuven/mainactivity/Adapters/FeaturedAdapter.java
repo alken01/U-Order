@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.adapter;
+package be.kuleuven.mainactivity.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.model.Item;
+import be.kuleuven.mainactivity.ModelClasses.Item;
 
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.PopularFoodViewHolder> {
@@ -84,7 +84,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
                     Integer previous;
                     int quantity = 0;
 
-                    if(order.getText().toString() == "") { previous = 0; }
+                    if(order.getText().toString().equals(""))
+                    { previous = 0; }
                     else{previous = Integer.parseInt(order.getText().toString());}
 
                     quantity = previous + 1;
@@ -92,15 +93,9 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
                 }
             });
 
-            itemView.findViewById(R.id.btnMinus).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int quantity = Integer.parseInt(order.getText().toString()) - 1;
 
-                    if (quantity > 0) { order.setText(Integer.toString(quantity)); }
-                    else { order.setText(""); }
-                }
-            });
+
+
         }
     }
 

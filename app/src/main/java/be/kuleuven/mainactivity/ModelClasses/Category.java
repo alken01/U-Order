@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.model;
+package be.kuleuven.mainactivity.ModelClasses;
 
 public class Category {
 

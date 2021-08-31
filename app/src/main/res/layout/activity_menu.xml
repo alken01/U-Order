@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +15,17 @@
     tools:context=".BasketActivity"
     android:elevation="0dp">
 
+
+    <TextView
+        android:id="@+id/txtName6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:text=" Leuven "
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtName5"
+        app:layout_constraintStart_toEndOf="@+id/txtName5" />
 
     <TextView
         android:id="@+id/txtAllCategories2"
@@ -39,12 +55,11 @@
 
     <ImageView
         android:id="@+id/image_home"
-        android:layout_width="41dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtName6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home" />
 
     <TextView
@@ -54,11 +69,22 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/black"
-        android:text="Yamato🥢 \nSushi, Leuven "
+        android:text="Yamato🥢 "
         android:textColor="#29282d"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtName5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="Sushi,"
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/txtName"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <TextView
         android:id="@+id/txtTokensLeft3"
@@ -84,7 +110,7 @@
         android:textColor="#29282d"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/order_recycler"
@@ -117,4 +143,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtAllCategories2" />
 
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

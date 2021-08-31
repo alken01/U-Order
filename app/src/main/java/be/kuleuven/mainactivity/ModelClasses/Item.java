@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.model;
+package be.kuleuven.mainactivity.ModelClasses;
 
 import android.graphics.Bitmap;
 
@@ -19,6 +19,9 @@ public class Item {
         this.description = description;
         this.order = order;
         this.featured = featured;
+    }
+
+    public Item(Bitmap image, String sheesh, String token, String quantity, String category, String description, Integer integer, int order) {
     }
 
     public int getOrder() { return order; }

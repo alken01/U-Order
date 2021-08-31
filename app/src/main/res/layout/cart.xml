@@ -15,10 +15,10 @@
         android:background="@drawable/recyclers2">
 
         <ImageView
-            android:id="@+id/imgRecycle2"
+            android:id="@+id/imgRecycle2cart"
             android:layout_width="50dp"
             android:layout_height="54dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="18dp"
             android:src="@drawable/sushi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtName2"
+            android:id="@+id/txtName2cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -36,11 +36,11 @@
             android:text="Name"
             android:textColor="#29282d"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imgRecycle2"
+            app:layout_constraintStart_toEndOf="@+id/imgRecycle2cart"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtDescription2"
+            android:id="@+id/txtDescription2cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/regular"
@@ -48,27 +48,43 @@
             android:textColor="#29282d"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/txtName2"
-            app:layout_constraintTop_toBottomOf="@+id/txtName2"
+            app:layout_constraintStart_toStartOf="@+id/txtName2cart"
+            app:layout_constraintTop_toBottomOf="@+id/txtName2cart"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/btnPlus2"
+            android:id="@+id/btnPlus2cart"
             android:layout_width="60dp"
             android:layout_height="0dp"
             android:background="#F4F0F0"
-            android:elevation="20dp"
             android:fontFamily="@font/bold"
             android:lineSpacingExtra="0sp"
-            android:text="Add"
+            android:text="+"
             android:textColor="#29282d"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlus3cart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/btnPlus3cart"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:background="#F4F0F0"
+            android:fontFamily="@font/bold"
+            android:lineSpacingExtra="0sp"
+            android:text="-"
+            android:textColor="#29282d"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btnPlus2cart"
+            app:layout_constraintTop_toBottomOf="@+id/btnPlus2cart"
+            app:layout_constraintVertical_bias="1.0" />
+
         <TextView
-            android:id="@+id/txtTokens2"
+            android:id="@+id/txtTokens2cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -78,12 +94,12 @@
             android:textColor="#47415C"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlus2"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlus2cart"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/txtQuantity2"
+            android:id="@+id/txtQuantity2cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -92,9 +108,9 @@
             android:textColor="#29282d"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlus2"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlus2cart"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/txtName2"
+            app:layout_constraintStart_toEndOf="@+id/txtName2cart"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.262" />
     </androidx.constraintlayout.widget.ConstraintLayout>

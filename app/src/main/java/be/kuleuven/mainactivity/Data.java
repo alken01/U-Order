@@ -1,6 +1,5 @@
 package be.kuleuven.mainactivity;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -14,17 +13,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import be.kuleuven.mainactivity.model.Category;
-import be.kuleuven.mainactivity.model.Item;
+import be.kuleuven.mainactivity.ModelClasses.Category;
+import be.kuleuven.mainactivity.ModelClasses.Item;
 
 public class Data {
 
@@ -107,7 +100,7 @@ public class Data {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 String Emoji = jsonObject.getString("Emoji");
                                 String Category = jsonObject.getString("Category");
-                                be.kuleuven.mainactivity.model.Category category = new Category(Emoji, Category);
+                                be.kuleuven.mainactivity.ModelClasses.Category category = new Category(Emoji, Category);
                                 categoryList.add(category);
                             } catch (JSONException e) {
                                 e.printStackTrace();
