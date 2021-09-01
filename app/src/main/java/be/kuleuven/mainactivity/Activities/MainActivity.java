@@ -30,7 +30,6 @@ import java.util.List;
 import be.kuleuven.mainactivity.Adapters.CategoryAdapter;
 import be.kuleuven.mainactivity.Adapters.MenuAdapter;
 import be.kuleuven.mainactivity.Adapters.FeaturedAdapter;
-import be.kuleuven.mainactivity.Data;
 import be.kuleuven.mainactivity.ModelClasses.Category;
 import be.kuleuven.mainactivity.ModelClasses.Item;
 import be.kuleuven.mainactivity.R;
@@ -43,13 +42,11 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     ImageView image_order;
 
-    Data data;
     RequestQueue requestQueue;
 
     List < Item > menuList = new ArrayList < > ();
     List < Item > featuredList = new ArrayList < > ();
     List < Category > categoryList = new ArrayList < > ();
-    List < Category > cartList = new ArrayList < > ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +61,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        addItemsLol();
-
-        getMenu(); //gets all menu
-        getCategory(); //gets the categories
-        callIt(); //places them on the recycles
-
-
+        getMenu();
+        getCategory();
+        callIt();
     }
 
     private void setPopularRecycler(List < Item > popularFoodList) {
@@ -105,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getMenu() {
         requestQueue = Volley.newRequestQueue(this);
-        String url = "https://studev.groept.be/api/a20sd710/getMenu2";
+        String url = "https://studev.groept.be/api/a20sd710/getMenu";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener < JSONArray > () {

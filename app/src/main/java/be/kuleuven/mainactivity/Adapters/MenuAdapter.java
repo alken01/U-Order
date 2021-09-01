@@ -1,4 +1,5 @@
 package be.kuleuven.mainactivity.Adapters;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import be.kuleuven.mainactivity.R;
 import be.kuleuven.mainactivity.ModelClasses.Item;
+import be.kuleuven.mainactivity.database.DatabaseCart;
 
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
@@ -34,7 +36,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
 
     @Override
-    public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MenuViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         String setQuantities;
         if (Integer.parseInt(menuList.get(position).getQuantity())>1){
@@ -45,6 +47,43 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         int nrOfTokens = Integer.parseInt(menuList.get(position).getToken());
         if(nrOfTokens>=4) { setToken = nrOfTokens + "x🪙"; }
         else { for(int i=0;i<nrOfTokens;i++) { setToken= setToken + "🪙"; }}
+
+        holder.itemView.findViewById(R.id.btnPlus2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Item item;
+                DatabaseCart databaseCart = new DatabaseCart(v.getContext());
+                if(databaseCart.checkIfItemExists(menuList.get(position).getName())){
+
+                    int orderNumber = 1 + menuList.get(position).getOrder();
+                    item = new Item(menuList.get(position).getImage(),
+                            menuList.get(position).getName(),
+                            menuList.get(position).getToken(),
+                            menuList.get(position).getQuantity(),
+                            menuList.get(position).getDescription(),
+                            orderNumber);
+                    databaseCart.updateItem(item);
+                }
+                else{
+                    item = new Item(menuList.get(position).getImage(),
+                            menuList.get(position).getName(),
+                            menuList.get(position).getToken(),
+                            menuList.get(position).getQuantity(),
+                            menuList.get(position).getDescription(),
+                            1);
+                    databaseCart.addItem(item);
+                }
+            }
+        });
+
+//                updateItems(databaseCart.getAllItems());
+//                Integer previous;
+//                int quantity = 0;
+//                if(order.getText().toString() == "")
+//                { previous = 0; }
+//                else{previous = Integer.parseInt(order.getText().toString());}
+//                quantity = previous + 1;
+//                order.setText(Integer.toString(quantity));
 
 
 
@@ -57,7 +96,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.quantity.setText(setQuantities);
         holder.tokens.setText(setToken);
         holder.description.setText(menuList.get(position).getDescription());
-//        holder.order.setText(setOrder);
         menuList.get(position).setOrder(menuList.get(position).getOrder());
 
     }
@@ -80,23 +118,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             description = itemView.findViewById(R.id.txtDescription2);
             quantity = itemView.findViewById(R.id.txtQuantity2);
 //            order = itemView.findViewById(R.id.txtOrder2);
-
-            itemView.findViewById(R.id.btnPlus2).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Integer previous;
-                    int quantity = 0;
-                    if(order.getText().toString() == "")
-                    { previous = 0; }
-                    else{previous = Integer.parseInt(order.getText().toString());}
-                    quantity = previous + 1;
-                    order.setText(Integer.toString(quantity));
-                }
-            });
-
-
-
         }
+    }
+
+    public void updateItems(List<Item> newList) {
+        menuList.clear();
+        menuList.addAll(newList);
+        this.notifyDataSetChanged();
     }
 
 }
