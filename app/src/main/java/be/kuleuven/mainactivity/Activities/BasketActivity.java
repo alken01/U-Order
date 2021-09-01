@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity;
+package be.kuleuven.mainactivity.Activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,9 +19,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.kuleuven.mainactivity.Adapters.CartAdapter;
 import be.kuleuven.mainactivity.Adapters.MenuAdapter;
 import be.kuleuven.mainactivity.ModelClasses.Item;
+import be.kuleuven.mainactivity.R;
 
 public class BasketActivity extends AppCompatActivity {
 
@@ -105,6 +105,7 @@ public class BasketActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
     }
 
     @Override

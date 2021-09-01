@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity;
+package be.kuleuven.mainactivity.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -30,8 +30,10 @@ import java.util.List;
 import be.kuleuven.mainactivity.Adapters.CategoryAdapter;
 import be.kuleuven.mainactivity.Adapters.MenuAdapter;
 import be.kuleuven.mainactivity.Adapters.FeaturedAdapter;
+import be.kuleuven.mainactivity.Data;
 import be.kuleuven.mainactivity.ModelClasses.Category;
 import be.kuleuven.mainactivity.ModelClasses.Item;
+import be.kuleuven.mainactivity.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -183,4 +185,10 @@ public class MainActivity extends AppCompatActivity {
         setMenuRecycler(menuList);
     }
 
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
 }

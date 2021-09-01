@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity;
+package be.kuleuven.mainactivity.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+
+import be.kuleuven.mainactivity.R;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText name;
@@ -76,14 +78,6 @@ public class SignUpActivity extends AppCompatActivity {
     public void openLogIn(View view) {
         Intent intent = new Intent(this, LogInActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
-
-
-
-    @Override
-    public void finish() {
-        super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

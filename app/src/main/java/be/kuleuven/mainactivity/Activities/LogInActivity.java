@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity;
+package be.kuleuven.mainactivity.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import be.kuleuven.mainactivity.R;
 
 public class LogInActivity extends AppCompatActivity {
     private EditText user;
@@ -94,10 +96,5 @@ public class LogInActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
 
 }

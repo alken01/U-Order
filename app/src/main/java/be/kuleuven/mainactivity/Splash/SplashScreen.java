@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import be.kuleuven.mainactivity.LogInActivity;
+import be.kuleuven.mainactivity.Activities.LogInActivity;
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.SignUpActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
