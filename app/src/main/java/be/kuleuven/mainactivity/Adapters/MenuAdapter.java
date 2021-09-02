@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -73,6 +74,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                             1);
                     databaseCart.addItem(item);
                 }
+                holder.btnPlus2.setText("✔️");
             }
         });
 
@@ -108,7 +110,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public static final class MenuViewHolder extends RecyclerView.ViewHolder
     {
         ImageView foodImage;
-        TextView name, tokens, description, quantity,order;
+        TextView name, tokens, description, quantity;
+        Button btnPlus2;
+
 
         public MenuViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -117,7 +121,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             tokens = itemView.findViewById(R.id.txtTokens2);
             description = itemView.findViewById(R.id.txtDescription2);
             quantity = itemView.findViewById(R.id.txtQuantity2);
-//            order = itemView.findViewById(R.id.txtOrder2);
+            btnPlus2 = itemView.findViewById(R.id.btnPlus2);
         }
     }
 

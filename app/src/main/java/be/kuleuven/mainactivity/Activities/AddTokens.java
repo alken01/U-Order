@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,16 +16,17 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
 public class AddTokens extends AppCompatActivity {
 
     String urlToken = "https://studev.groept.be/api/a20sd710/getCode/";
+    String updateToken = "https://studev.groept.be/api/a20sd710/updateTokens/";
     private EditText txtPassword23token;
-    private RequestQueue requestQueue;
-    private TextView txtTokensLeftMAIN;
+    private RequestQueue requestQueue, addTokens;
+    private TextView txtTokensLeftADD;
     
 
     @Override
@@ -37,20 +36,14 @@ public class AddTokens extends AppCompatActivity {
 
         txtPassword23token= findViewById(R.id.txtPassword23token);
 
-        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftMAIN);
-
-        ImageView home = (ImageView) findViewById(R.id.image_home23token);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openHome();
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
-            }
-        });
+        txtTokensLeftADD = (TextView) findViewById(R.id.txtTokensLeftADD);
+        int tokensTotal = Users.tokens;
+        String tokens = String.valueOf(tokensTotal);
+        if(tokens == null) { tokens="0"; }
+        txtTokensLeftADD.setText( tokens + " \uD83E\uDE99 ");
 
 
-        
+
         TextView textViewSkip = (TextView) findViewById(R.id.textViewSkip);
         textViewSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +74,12 @@ public class AddTokens extends AppCompatActivity {
                             try {
                                 int tokensToAdd = response.getJSONObject(0).getInt("Tokens");
 
-                                intent.putExtra("TOKENS", tokensToAdd);
+                                Users.tokens = Users.tokens + tokensToAdd;
                                 Toast.makeText(AddTokens.this, "Tokens received!", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                updateToken(Users.tokens, Users.username);
 //                                finish();
-
                             } catch (JSONException e) {
                                 Log.e("Database", e.getMessage(), e);
                             }
@@ -95,6 +88,19 @@ public class AddTokens extends AppCompatActivity {
                     error -> Log.d("Error","Error"));
             requestQueue.add(jsonArrayRequest);
         }
+    }
+
+    public void updateToken(int tokens,String username)
+    {
+
+        String userTest = updateToken + tokens + "/" + username;
+
+        addTokens = Volley.newRequestQueue( this );
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, userTest, null,
+                response -> { },
+                error -> Log.d("Error","Error"));
+        addTokens.add(jsonArrayRequest);
+
     }
 
 

@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
 public class LogInActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
     public void openMainFromLogIn(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, AddTokens.class);
 
         if (String.valueOf(user.getText()).equals("") || String.valueOf(password.getText()).equals("")) {
             if (String.valueOf(user.getText()).equals("")) {
@@ -67,9 +68,15 @@ public class LogInActivity extends AppCompatActivity {
                                             JSONObject j = response.getJSONObject(0);
 
                                             if (j.getString("Password").equals(String.valueOf(password.getText()))) {
-                                                Toast.makeText(LogInActivity.this, "Log In Successful", Toast.LENGTH_LONG).show();
-                                                int tokensToAdd = response.getJSONObject(0).getInt("Tokens");
-                                                intent.putExtra("TOKENS", tokensToAdd);                                                startActivity(intent);
+                                                Toast.makeText(LogInActivity.this, "Log In Successful", Toast.LENGTH_SHORT).show();
+
+                                                Users.tokens = response.getJSONObject(0).getInt("Tokens");
+                                                Users.nameUser = response.getJSONObject(0).getString("Name");
+                                                Users.username = response.getJSONObject(0).getString("Username");
+                                                Users.password = response.getJSONObject(0).getString("Password");
+
+
+                                                startActivity(intent);
                                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                                 finish();
                                             } else {
@@ -92,10 +99,16 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void openGuest(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, AddTokens.class);
+        Users.setTokens(0);
+        Users.setUsername("guest");
+        Users.setNameUser("");
+        Users.setPassword("password");
+
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
+
 
 
 }

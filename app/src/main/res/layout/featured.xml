@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         <Button
-            android:id="@+id/btnPlus"
+            android:id="@+id/btnPlusFeatured"
             android:layout_width="83dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"

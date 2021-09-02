@@ -15,11 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +24,7 @@ import java.util.List;
 
 import be.kuleuven.mainactivity.Adapters.CartAdapter;
 import be.kuleuven.mainactivity.ModelClasses.Item;
+import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 import be.kuleuven.mainactivity.Database.DatabaseCart;
 
@@ -37,10 +33,10 @@ public class BasketActivity extends AppCompatActivity {
     ImageView image_home;
     RecyclerView orderRecycler;
     CartAdapter orderAdapter;
-    TextView txtTokensLeft2, txtTokensLeft3, textViewCart;
+    TextView txtTokensLeft2, txtTokensLeftADD, textViewCart;
     Button btnOrder;
-
     List<Item> order = new ArrayList<>();
+    String URLSubmit = "https://studev.groept.be/api/a20sd710/orderItems/";
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -50,15 +46,26 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         txtTokensLeft2 = (TextView) findViewById(R.id.txtTokensLeft2);
-        txtTokensLeft3 = (TextView) findViewById(R.id.txtTokensLeftMAIN);
 
+        txtTokensLeftADD = (TextView) findViewById(R.id.txtTokensLeftADD);
+
+        String tokens = String.valueOf(Users.tokens);
+        if(tokens == null) { tokens="0"; }
+        txtTokensLeftADD.setText( tokens + " \uD83E\uDE99 ");
 
 
         btnOrder = (Button) findViewById(R.id.btnOrder);
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BasketActivity.this, "Submitting Order!", Toast.LENGTH_LONG).show(); }});
+                try {
+                    submitOrder();
+                    Toast.makeText(BasketActivity.this, "Submitting Order!", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }});
 
         image_home = (ImageView) findViewById(R.id.image_home23);
         image_home.setOnClickListener(new View.OnClickListener() {
@@ -95,19 +102,35 @@ public class BasketActivity extends AppCompatActivity {
 
     public void submitOrder() throws JSONException {
 
-        JSONArray jsonArray = new JSONArray();
+//        JSONArray jsonArray = new JSONArray();
+//
+//        JSONObject username = new JSONObject();
+//        username.put("username","ALKENI");
+//        jsonArray.put(username);
+//
+//        for (Item i: order){
+//            JSONObject item = new JSONObject();
+//            try {
+//                item.put("item_name",i.getName());
+//                item.put("item_order",i.getOrder());
+//            } catch (JSONException e) { e.printStackTrace(); }
+//            jsonArray.put(i);
+//        }
+        Intent intent = new Intent(this, MainActivity.class);
 
-        JSONObject username = new JSONObject();
-        username.put("username","ALKENI");
-        jsonArray.put(username);
-
-        for (Item i: order){
-            JSONObject item = new JSONObject();
-            try {
-                item.put("item_name",i.getName());
-                item.put("item_order",i.getOrder());
-            } catch (JSONException e) { e.printStackTrace(); }
-            jsonArray.put(i);
+        int price = Integer.parseInt(tokenCounter(order));
+        if(order.size()==0){
+            Toast.makeText(BasketActivity.this, "No Items in the Cart", Toast.LENGTH_SHORT).show();
+        }
+        else if (price<=Users.tokens)
+        {
+            Users.tokens = Users.tokens - price;
+            Toast.makeText(BasketActivity.this, "Submitting Order!", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        }
+        else{
+            Toast.makeText(BasketActivity.this, "Not enough tokens :(", Toast.LENGTH_SHORT).show();
         }
 
     }

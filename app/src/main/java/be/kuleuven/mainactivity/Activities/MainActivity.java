@@ -33,6 +33,7 @@ import be.kuleuven.mainactivity.Adapters.MenuAdapter;
 import be.kuleuven.mainactivity.Adapters.FeaturedAdapter;
 import be.kuleuven.mainactivity.ModelClasses.Category;
 import be.kuleuven.mainactivity.ModelClasses.Item;
+import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     MenuAdapter menuAdapter;
     CategoryAdapter categoryAdapter;
     ImageView image_order;
-    TextView txtTokensLeftMAIN;
+    TextView txtTokensLeftMAIN,textViewWelcome;
 
     RequestQueue requestQueue;
 
@@ -56,19 +57,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftMAIN);
+        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftADD);
 
-        String stringBeforeT = txtTokensLeftMAIN.getText().toString();
-        String stringBefore = stringBeforeT.replace(" \uD83E\uDE99 ","");
-        int numberBefore = Integer.parseInt(stringBefore);
-
-        int tokensToAdd = getIntent().getIntExtra("TOKENS",0);
-
-        int tokensTotal = numberBefore + tokensToAdd;
-
+        int tokensTotal = Users.tokens;
         String tokens = String.valueOf(tokensTotal);
         if(tokens == null) { tokens="0"; }
         txtTokensLeftMAIN.setText( tokens + " \uD83E\uDE99 ");
+
+        textViewWelcome = (TextView) findViewById(R.id.textViewWelcome);
+        textViewWelcome.setText("Hey "+Users.nameUser+"! Ready for sushi?");
 
         image_order = (ImageView) findViewById(R.id.image_home23);
         image_order.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftMAIN);
+        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftADD);
         txtTokensLeftMAIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {openTokens();}

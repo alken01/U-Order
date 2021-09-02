@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,32 +63,32 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
         holder.foodImage.setImageBitmap(popularFoodList.get(position).getImage());
         popularFoodList.get(position).setOrder(popularFoodList.get(position).getOrder());
 
-        holder.itemView.findViewById(R.id.btnPlus).setOnClickListener(new View.OnClickListener() {
+        holder.itemView.findViewById(R.id.btnPlusFeatured).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Item item;
                 DatabaseCart databaseCart = new DatabaseCart(v.getContext());
+
                 if(databaseCart.checkIfItemExists(popularFoodList.get(position).getName())){
 
                     int orderNumber = 1 + popularFoodList.get(position).getOrder();
                     item = new Item(popularFoodList.get(position).getImage(),
-                            popularFoodList.get(position).getName(),
-                            popularFoodList.get(position).getToken(),
-                            popularFoodList.get(position).getQuantity(),
-                            popularFoodList.get(position).getDescription(),
-                            orderNumber);
+                        popularFoodList.get(position).getName(),
+                        popularFoodList.get(position).getToken(),
+                        popularFoodList.get(position).getQuantity(),
+                        popularFoodList.get(position).getDescription(),
+                        orderNumber);
                     databaseCart.updateItem(item);
                 }
-                else{
-                    int orderNumber = 1 + popularFoodList.get(position).getOrder();
+                else {
                     item = new Item(popularFoodList.get(position).getImage(),
-                            popularFoodList.get(position).getName(),
-                            popularFoodList.get(position).getToken(),
-                            popularFoodList.get(position).getQuantity(),
-                            popularFoodList.get(position).getDescription(),
-                            1);
-                    databaseCart.addItem(item);
-                }
+                        popularFoodList.get(position).getName(),
+                        popularFoodList.get(position).getToken(),
+                        popularFoodList.get(position).getQuantity(),
+                        popularFoodList.get(position).getDescription(),
+                        1);
+                    databaseCart.addItem(item); }
+                holder.btnPlusFeatured.setText("✔️");
             }
         });
     }
@@ -95,11 +96,11 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
     @Override
     public int getItemCount() { return popularFoodList.size(); }
 
-
     public static final class PopularFoodViewHolder extends RecyclerView.ViewHolder
     {
         ImageView foodImage;
         TextView name, tokens, description, quantity, order;
+        Button btnPlusFeatured;
 
         public PopularFoodViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +110,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
             description = itemView.findViewById(R.id.txtDescription);
             quantity = itemView.findViewById(R.id.txtQuantity);
             order = itemView.findViewById(R.id.txtOrder);
+            btnPlusFeatured = itemView.findViewById(R.id.btnPlusFeatured);
+
         }
     }
 

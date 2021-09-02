@@ -56,21 +56,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/txtName11token"
         app:layout_constraintStart_toEndOf="@+id/txtName11token" />
 
-    <ImageView
-        android:id="@+id/image_home23token"
-        android:layout_width="56dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtName14token"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/home" />
-
     <TextView
         android:id="@+id/txtCodetoken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/bold"
         android:text="Enter the Code 🧾 "
         android:textColor="#29282d"
@@ -96,15 +86,16 @@
         app:layout_constraintTop_toBottomOf="@+id/txtCodetoken" />
 
     <TextView
-        android:id="@+id/txtTokensLeftMAIN"
+        android:id="@+id/txtTokensLeftADD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/medium"
-        android:text="10 🪙 "
+        android:text="0 🪙 "
         android:textColor="#2C2B30"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtCode2token"
         app:layout_constraintEnd_toEndOf="@+id/txtCodetoken"
+        app:layout_constraintTop_toTopOf="@+id/txtCode2token"
         tools:ignore="MissingConstraints" />
 
     <Button

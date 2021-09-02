@@ -40,8 +40,8 @@
 
         <ImageView
             android:id="@+id/image_home23"
-            android:layout_width="53dp"
-            android:layout_height="59dp"
+            android:layout_width="48dp"
+            android:layout_height="54dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/txtName12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtTokensLeftMAIN"
+            android:id="@+id/txtTokensLeftADD"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
@@ -78,7 +78,7 @@
             android:id="@+id/txtAllCategories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/bold"
             android:onClick="theRightWay"
@@ -86,7 +86,7 @@
             android:textColor="#29282d"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtName13"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWelcome"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
@@ -155,6 +155,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAllCategories" />
+
+        <TextView
+            android:id="@+id/textViewWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/regular"
+            android:text="Hey Alken! Ready for sushi?"
+            android:textColor="#2F2D33"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/txtName13"
+            app:layout_constraintTop_toBottomOf="@+id/txtName13" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

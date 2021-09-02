@@ -14,6 +14,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+
+import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -35,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void openMainFromSignUp(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, AddTokens.class);
         if(String.valueOf(username.getText()).equals("") || String.valueOf(password.getText()).equals("") || String.valueOf(name.getText()).equals("")) {
             if (String.valueOf(username.getText()).equals("")){
                 Toast.makeText(SignUpActivity.this,"Insert the Username!",Toast.LENGTH_LONG).show();
@@ -58,6 +61,10 @@ public class SignUpActivity extends AppCompatActivity {
                             RequestQueue userCreator = Volley.newRequestQueue( this );
                             JsonArrayRequest newUserRequest = new JsonArrayRequest(Request.Method.GET, newUser, null,
                                     response1 -> {
+                                        Users.tokens = 0;
+                                        Users.nameUser = name.getText().toString();
+                                        Users.username = username.getText().toString();
+                                        Users.password = password.getText().toString();
                                         Toast.makeText(SignUpActivity.this,"Account Created Successfully",Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
