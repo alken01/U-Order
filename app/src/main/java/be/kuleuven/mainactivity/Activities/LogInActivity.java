@@ -68,7 +68,8 @@ public class LogInActivity extends AppCompatActivity {
 
                                             if (j.getString("Password").equals(String.valueOf(password.getText()))) {
                                                 Toast.makeText(LogInActivity.this, "Log In Successful", Toast.LENGTH_LONG).show();
-                                                startActivity(intent);
+                                                int tokensToAdd = response.getJSONObject(0).getInt("Tokens");
+                                                intent.putExtra("TOKENS", tokensToAdd);                                                startActivity(intent);
                                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                                 finish();
                                             } else {

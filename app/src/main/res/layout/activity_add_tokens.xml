@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtCodetoken" />
 
     <TextView
-        android:id="@+id/txtTokensLeft3token"
+        android:id="@+id/txtTokensLeftMAIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/medium"
@@ -117,6 +117,7 @@
         android:background="@drawable/btn"
         android:elevation="0dp"
         android:fontFamily="@font/bold"
+        android:onClick="submit"
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#FF2B2B2B"

@@ -88,7 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         <TextView
-            android:id="@+id/txtTokensLeft3"
+            android:id="@+id/txtTokensLeftMAIN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"

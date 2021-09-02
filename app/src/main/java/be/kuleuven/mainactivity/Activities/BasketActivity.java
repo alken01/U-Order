@@ -15,6 +15,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +50,7 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         txtTokensLeft2 = (TextView) findViewById(R.id.txtTokensLeft2);
-        txtTokensLeft3 = (TextView) findViewById(R.id.txtTokensLeft3);
+        txtTokensLeft3 = (TextView) findViewById(R.id.txtTokensLeftMAIN);
 
 
 
@@ -82,6 +91,25 @@ public class BasketActivity extends AppCompatActivity {
             totalTokens += Integer.parseInt(order.get(i).getToken()) * order.get(i).getOrder();
         }
         return String.valueOf(totalTokens);
+    }
+
+    public void submitOrder() throws JSONException {
+
+        JSONArray jsonArray = new JSONArray();
+
+        JSONObject username = new JSONObject();
+        username.put("username","ALKENI");
+        jsonArray.put(username);
+
+        for (Item i: order){
+            JSONObject item = new JSONObject();
+            try {
+                item.put("item_name",i.getName());
+                item.put("item_order",i.getOrder());
+            } catch (JSONException e) { e.printStackTrace(); }
+            jsonArray.put(i);
+        }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
