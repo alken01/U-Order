@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity.database;
+package be.kuleuven.mainactivity.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,9 +11,7 @@ import android.util.Base64;
 
 import androidx.annotation.NonNull;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 import be.kuleuven.mainactivity.ModelClasses.Item;
@@ -85,9 +83,8 @@ public class DatabaseCart extends SQLiteOpenHelper {
 
     public void removeItem(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String Query = "DELETE FROM" + CART_TABLE + " WHERE " + ITEM_NAME + " = " + "'" + name + "'";
-        Cursor cursor = db.rawQuery(Query, null);
-        cursor.close();
+        String Query = "DELETE FROM " + CART_TABLE + " WHERE " + ITEM_NAME + " = " + "'" + name + "'";
+        db.execSQL(Query);
         db.close();
 
     }
@@ -132,15 +129,7 @@ public class DatabaseCart extends SQLiteOpenHelper {
         return items;
     }
 
-    public void clearTheCart()
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String Query = "DELETE FROM" + CART_TABLE;
-        Cursor cursor = db.rawQuery(Query, null);
-        cursor.close();
-        db.close();
 
-    }
 
     public Bitmap convert(String base64Str) throws IllegalArgumentException {
         byte[] decodedBytes = Base64.decode(

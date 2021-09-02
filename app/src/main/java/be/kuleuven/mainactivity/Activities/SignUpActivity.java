@@ -30,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         name= findViewById(R.id.txtName);
         username= findViewById(R.id.txtUsername);
-        password=findViewById(R.id.txtPassword);
+        password=findViewById(R.id.txtPassword23);
     }
 
     public void openMainFromSignUp(View view)

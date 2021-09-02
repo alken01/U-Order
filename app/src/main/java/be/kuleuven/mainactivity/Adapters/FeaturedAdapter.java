@@ -1,27 +1,20 @@
 package be.kuleuven.mainactivity.Adapters;
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import be.kuleuven.mainactivity.Activities.BasketActivity;
-import be.kuleuven.mainactivity.Activities.MainActivity;
-import be.kuleuven.mainactivity.MyApplication;
 import be.kuleuven.mainactivity.R;
 import be.kuleuven.mainactivity.ModelClasses.Item;
-import be.kuleuven.mainactivity.database.DatabaseCart;
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.PopularFoodViewHolder> {
@@ -93,7 +86,6 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Popula
                             popularFoodList.get(position).getQuantity(),
                             popularFoodList.get(position).getDescription(),
                             1);
-
                     databaseCart.addItem(item);
                 }
             }

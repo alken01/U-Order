@@ -1,4 +1,5 @@
 package be.kuleuven.mainactivity.Activities;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,11 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,17 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.kuleuven.mainactivity.Adapters.CartAdapter;
-import be.kuleuven.mainactivity.Adapters.MenuAdapter;
 import be.kuleuven.mainactivity.ModelClasses.Item;
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.database.DatabaseCart;
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 
 public class BasketActivity extends AppCompatActivity {
 
     ImageView image_home;
     RecyclerView orderRecycler;
     CartAdapter orderAdapter;
-    TextView txtTokensLeft2, txtTokensLeft3;
+    TextView txtTokensLeft2, txtTokensLeft3, txtEmpty;
     Button btnOrder;
 
     List<Item> order = new ArrayList<>();
@@ -46,13 +43,15 @@ public class BasketActivity extends AppCompatActivity {
         txtTokensLeft2 = (TextView) findViewById(R.id.txtTokensLeft2);
         txtTokensLeft3 = (TextView) findViewById(R.id.txtTokensLeft3);
 
+
+
         btnOrder = (Button) findViewById(R.id.btnOrder);
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(BasketActivity.this, "Submitting Order!", Toast.LENGTH_LONG).show(); }});
 
-        image_home = (ImageView) findViewById(R.id.image_home);
+        image_home = (ImageView) findViewById(R.id.image_home23);
         image_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openMain(); }
@@ -68,7 +67,7 @@ public class BasketActivity extends AppCompatActivity {
     private String tokenCounter(List<Item> order) {
         int totalTokens = 0;
         for (int i = 0; i<order.size(); i++){
-            totalTokens += Integer.parseInt(order.get(i).getToken()) * Integer.parseInt(order.get(i).getQuantity());
+            totalTokens += Integer.parseInt(order.get(i).getToken()) * order.get(i).getOrder();
         }
         return String.valueOf(totalTokens);
     }

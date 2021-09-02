@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        image_order = (ImageView) findViewById(R.id.image_home);
+        image_order = (ImageView) findViewById(R.id.image_home23);
         image_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void openBasket() {
         Intent intent = new Intent(this, BasketActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void openTokens() {
+        Intent intent = new Intent(this, AddTokens.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

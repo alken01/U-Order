@@ -39,7 +39,7 @@
             app:layout_constraintStart_toEndOf="@+id/txtName13" />
 
         <ImageView
-            android:id="@+id/image_home"
+            android:id="@+id/image_home23"
             android:layout_width="53dp"
             android:layout_height="59dp"
             android:layout_marginEnd="24dp"
@@ -66,6 +66,7 @@
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/regular"
+            android:onClick="openTokens"
             android:text="10 🪙 "
             android:textColor="#2C2B30"
             android:textSize="24sp"

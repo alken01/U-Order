@@ -113,11 +113,11 @@
         android:text="Password"
         android:textColor="#FF2B2B2B"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtPassword" />
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword23"
+        app:layout_constraintStart_toStartOf="@+id/txtPassword23" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtPassword23"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -163,6 +163,6 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnSignUp,txtName,textView4,txtUsername,textView3,txtPassword,textView2,txtLogInHere" />
+        app:constraint_referenced_ids="btnSignUp,txtName,textView4,txtUsername,textView3,txtPassword23,textView2,txtLogInHere" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

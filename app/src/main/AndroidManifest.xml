@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MainActivity">
-        <activity android:name=".TokensQR"/>
+        <activity android:name=".Activities.AddTokens"/>
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.LogInActivity" />
         <activity android:name=".Activities.MainActivity" />

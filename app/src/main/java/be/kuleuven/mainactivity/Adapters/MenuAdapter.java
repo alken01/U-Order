@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import be.kuleuven.mainactivity.R;
 import be.kuleuven.mainactivity.ModelClasses.Item;
-import be.kuleuven.mainactivity.database.DatabaseCart;
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {

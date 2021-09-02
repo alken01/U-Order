@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AddTokens"
+    android:background="#F1F6F9">
+
+    <TextView
+        android:id="@+id/txtCode2token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:text="Current Total"
+        android:textColor="#29282d"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/txtCodetoken"
+        tools:layout_editor_absoluteY="208dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtName11token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="Sushi,"
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/txtName14token"
+        app:layout_constraintTop_toBottomOf="@+id/txtName14token" />
+
+    <TextView
+        android:id="@+id/txtName14token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/black"
+        android:text="Yamato🥢 "
+        android:textColor="#29282d"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtName15token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:text=" Leuven "
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtName11token"
+        app:layout_constraintStart_toEndOf="@+id/txtName11token" />
+
+    <ImageView
+        android:id="@+id/image_home23token"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtName14token"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/home" />
+
+    <TextView
+        android:id="@+id/txtCodetoken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/bold"
+        android:text="Enter the Code 🧾 "
+        android:textColor="#29282d"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCode2token" />
+
+    <EditText
+        android:id="@+id/txtPassword23token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="88dp"
+        android:ems="10"
+        android:fontFamily="@font/light"
+        android:inputType="textPassword"
+        android:textColor="#2B2B2B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodetoken" />
+
+    <TextView
+        android:id="@+id/txtTokensLeft3token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="10 🪙 "
+        android:textColor="#2C2B30"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCode2token"
+        app:layout_constraintEnd_toEndOf="@+id/txtCodetoken"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnLogIn23token"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="88dp"
+        android:background="@drawable/btn"
+        android:elevation="0dp"
+        android:fontFamily="@font/bold"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="#FF2B2B2B"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword23token" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

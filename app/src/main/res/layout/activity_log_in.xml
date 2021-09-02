@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLogInHere" />
 
     <Button
-        android:id="@+id/btnLogIn"
+        android:id="@+id/btnLogIn23"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="88dp"
@@ -128,7 +128,7 @@
         android:fontFamily="@font/light"
         android:inputType="textPassword"
         android:textColor="#2B2B2B"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogIn23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -145,7 +145,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn23" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

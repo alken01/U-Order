@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import be.kuleuven.mainactivity.Activities.BasketActivity;
 import be.kuleuven.mainactivity.ModelClasses.Item;
 import be.kuleuven.mainactivity.R;
-import be.kuleuven.mainactivity.database.DatabaseCart;
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MenuViewHolder> {
@@ -53,7 +52,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MenuViewHolder
         if(nrOfTokens>=4) { setToken = nrOfTokens + "x🪙"; }
         else { for(int i=0;i<nrOfTokens;i++) { setToken = setToken + "🪙"; }}
 
-        String setOrder = String.valueOf(menuList.get(position).getOrder()) + "x";
+        String setOrder = menuList.get(position).getOrder() + "x";
 
 
 
@@ -74,15 +73,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MenuViewHolder
                             orderNumber);
                     databaseCart.updateItem(item);
                 }
-                else{
-                    item = new Item(menuList.get(position).getImage(),
-                            menuList.get(position).getName(),
-                            menuList.get(position).getToken(),
-                            menuList.get(position).getQuantity(),
-                            menuList.get(position).getDescription(),
-                            1);
-                    databaseCart.addItem(item);
-                }
                 updateItems(databaseCart.getAllItems());
             }
         });
@@ -93,18 +83,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MenuViewHolder
             public void onClick(View v) {
                 Item item;
                 DatabaseCart databaseCart = new DatabaseCart(v.getContext());
-                if(menuList.get(position).getOrder() == 1) {
-                    databaseCart.removeItem(menuList.get(position).getName());
-                }
-                else{
-                    int orderNumber = menuList.get(position).getOrder() - 1;
-                    item = new Item(menuList.get(position).getImage(),
+                if(databaseCart.checkIfItemExists(menuList.get(position).getName())){
+
+                    if(menuList.get(position).getOrder() ==1)
+                    {
+                        item = new Item(menuList.get(position).getImage(),
                             menuList.get(position).getName(),
                             menuList.get(position).getToken(),
                             menuList.get(position).getQuantity(),
                             menuList.get(position).getDescription(),
-                            orderNumber);
-                    databaseCart.addItem(item);
+                                0);
+                        databaseCart.updateItem(item);
+                        databaseCart.removeItem(item.getName());
+                    }
+                    else {
+                        int orderNumber = menuList.get(position).getOrder() - 1;
+                        item = new Item(menuList.get(position).getImage(),
+                                menuList.get(position).getName(),
+                                menuList.get(position).getToken(),
+                                menuList.get(position).getQuantity(),
+                                menuList.get(position).getDescription(),
+                                orderNumber);
+                        databaseCart.updateItem(item);
+
+                    }
                 }
                 updateItems(databaseCart.getAllItems());
             }
