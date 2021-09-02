@@ -28,7 +28,7 @@ public class BasketActivity extends AppCompatActivity {
     ImageView image_home;
     RecyclerView orderRecycler;
     CartAdapter orderAdapter;
-    TextView txtTokensLeft2, txtTokensLeft3, txtEmpty;
+    TextView txtTokensLeft2, txtTokensLeft3, textViewCart;
     Button btnOrder;
 
     List<Item> order = new ArrayList<>();
@@ -56,11 +56,23 @@ public class BasketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { openMain(); }
         });
+
+
         DatabaseCart databaseCart = new DatabaseCart(this);
         order = databaseCart.getAllItems();
         orderRecycler(order);
 
         txtTokensLeft2.setText(tokenCounter(order) + " \uD83E\uDE99");
+
+        textViewCart = (TextView) findViewById(R.id.textViewCart);
+        textViewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseCart.emptyAll();
+                Toast.makeText(BasketActivity.this, "Cart Emptied", Toast.LENGTH_SHORT).show();
+                openMain();
+            }
+        });
     }
 
 
@@ -93,5 +105,6 @@ public class BasketActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
     }
+
 
 }

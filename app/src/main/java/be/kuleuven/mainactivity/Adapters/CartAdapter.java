@@ -105,7 +105,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MenuViewHolder
                                 menuList.get(position).getDescription(),
                                 orderNumber);
                         databaseCart.updateItem(item);
-
                     }
                 }
                 updateItems(databaseCart.getAllItems());

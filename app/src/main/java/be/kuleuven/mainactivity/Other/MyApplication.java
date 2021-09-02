@@ -1,4 +1,4 @@
-package be.kuleuven.mainactivity;
+package be.kuleuven.mainactivity.Other;
 
 import android.app.Application;
 import android.content.Context;

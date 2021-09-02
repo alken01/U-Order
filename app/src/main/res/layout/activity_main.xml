@@ -61,12 +61,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtTokensLeft"
+            android:id="@+id/txtTokensLeftMAIN"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/regular"
-            android:onClick="openTokens"
             android:text="10 🪙 "
             android:textColor="#2C2B30"
             android:textSize="24sp"

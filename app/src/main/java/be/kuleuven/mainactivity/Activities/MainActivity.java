@@ -9,6 +9,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     MenuAdapter menuAdapter;
     CategoryAdapter categoryAdapter;
     ImageView image_order;
+    TextView txtTokensLeftMAIN;
 
     RequestQueue requestQueue;
 
@@ -60,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 openBasket();
             }
         });
+
+        txtTokensLeftMAIN = (TextView) findViewById(R.id.txtTokensLeftMAIN);
+        txtTokensLeftMAIN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {openTokens();}
+        });
+
+
 
         getMenu();
         getCategory();

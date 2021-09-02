@@ -89,6 +89,14 @@ public class DatabaseCart extends SQLiteOpenHelper {
 
     }
 
+    public void emptyAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "DELETE FROM " + CART_TABLE;
+        db.execSQL(Query);
+        db.close();
+
+    }
+
     public boolean checkIfItemExists(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "SELECT * FROM " + CART_TABLE + " WHERE " + ITEM_NAME + " = " + "'" + name + "'";
