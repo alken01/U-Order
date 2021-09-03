@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
@@ -34,6 +35,9 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         user = findViewById(R.id.txtUsername2);
         password = findViewById(R.id.txtPassword2);
+
+        DatabaseCart db = new DatabaseCart(this);
+        db.emptyAll();
 
     }
 

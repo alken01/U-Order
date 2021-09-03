@@ -28,7 +28,7 @@ public class DatabaseCart extends SQLiteOpenHelper {
 
     private static final String dbName = "cart_db";
     private static final int dbVersion = 1;
-    private Context context;
+    private final Context context;
 
     public DatabaseCart(Context context) {
         super(context, dbName, null, dbVersion);

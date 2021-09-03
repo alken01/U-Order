@@ -9,11 +9,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +59,9 @@ public class BasketActivity extends AppCompatActivity {
         if(tokens == null) { tokens="0"; }
         txtTokensLeftADD.setText( tokens + " \uD83E\uDE99 ");
 
+        txtTokensLeftADD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openTokens(); }});
 
         btnOrder = (Button) findViewById(R.id.btnOrder);
         btnOrder.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +79,7 @@ public class BasketActivity extends AppCompatActivity {
         image_home = (ImageView) findViewById(R.id.image_home23);
         image_home.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openMain(); }
+            public void onClick(View v) { finish(); }
         });
 
 
@@ -92,6 +101,12 @@ public class BasketActivity extends AppCompatActivity {
     }
 
 
+    public void openTokens() {
+        Intent intent = new Intent(this, AddTokens.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
     private String tokenCounter(List<Item> order) {
         int totalTokens = 0;
         for (int i = 0; i<order.size(); i++){
@@ -102,20 +117,6 @@ public class BasketActivity extends AppCompatActivity {
 
     public void submitOrder() throws JSONException {
 
-//        JSONArray jsonArray = new JSONArray();
-//
-//        JSONObject username = new JSONObject();
-//        username.put("username","ALKENI");
-//        jsonArray.put(username);
-//
-//        for (Item i: order){
-//            JSONObject item = new JSONObject();
-//            try {
-//                item.put("item_name",i.getName());
-//                item.put("item_order",i.getOrder());
-//            } catch (JSONException e) { e.printStackTrace(); }
-//            jsonArray.put(i);
-//        }
         Intent intent = new Intent(this, MainActivity.class);
 
         int price = Integer.parseInt(tokenCounter(order));
@@ -124,7 +125,10 @@ public class BasketActivity extends AppCompatActivity {
         }
         else if (price<=Users.tokens)
         {
+            DatabaseCart databaseCart = new DatabaseCart(this);
             Users.tokens = Users.tokens - price;
+            sendOrder();
+            databaseCart.emptyAll();
             Toast.makeText(BasketActivity.this, "Submitting Order!", Toast.LENGTH_SHORT).show();
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
@@ -134,6 +138,30 @@ public class BasketActivity extends AppCompatActivity {
         }
 
     }
+
+    public void sendOrder()
+    {
+        String userTest=URLSubmit+Users.username;
+        RequestQueue sendOrder = Volley.newRequestQueue( this );
+        JsonArrayRequest orderRequest = new JsonArrayRequest(Request.Method.GET, userTest, null,
+                response -> {
+            for(int i=0;i<order.size();i++)
+            {
+                String newUser = URLSubmit + Users.username+"/"+order.get(i).getName()+"/"+order.get(i).getOrder();
+                RequestQueue userCreator = Volley.newRequestQueue( this );
+                JsonArrayRequest newUserRequest = new JsonArrayRequest(Request.Method.GET, newUser, null,
+                        response1 -> {
+                        },
+                        error -> Toast.makeText(BasketActivity.this,"Connection Failed",Toast.LENGTH_LONG).show());
+                userCreator.add(newUserRequest);
+            }
+        },
+        error -> Log.d("Error","Error"));
+
+        sendOrder.add(orderRequest );
+
+    }
+
 
     @SuppressLint("NotifyDataSetChanged")
     private void orderRecycler(List<Item> order) {

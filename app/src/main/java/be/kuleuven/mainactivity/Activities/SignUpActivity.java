@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 
+import be.kuleuven.mainactivity.Database.DatabaseCart;
 import be.kuleuven.mainactivity.ModelClasses.Users;
 import be.kuleuven.mainactivity.R;
 
@@ -34,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
         name= findViewById(R.id.txtName);
         username= findViewById(R.id.txtUsername);
         password=findViewById(R.id.txtPassword23);
+        DatabaseCart db = new DatabaseCart(this);
+        db.emptyAll();
     }
 
     public void openMainFromSignUp(View view)
@@ -65,6 +68,9 @@ public class SignUpActivity extends AppCompatActivity {
                                         Users.nameUser = name.getText().toString();
                                         Users.username = username.getText().toString();
                                         Users.password = password.getText().toString();
+
+
+
                                         Toast.makeText(SignUpActivity.this,"Account Created Successfully",Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
